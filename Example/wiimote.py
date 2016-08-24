@@ -1,10 +1,11 @@
 # This program utilises the cwiid Python library in order to get input over bluetooth from a wiimote.
 # The following lines of code demonstrate many of the features realted to wiimotes, such as capturing button presses and rumbling the controller.
-# I have managed to map the home button to the accelerometer - simply hold it and values will appear!
 
-# Coded by The Raspberry Pi Guy. Work based on some of Matt Hawkins's!
+# Coded by Isaac Lim. Work based on some of the Raspberry Pi Guy's.
 
 import cwiid, time
+
+import pyserial
 
 button_delay = 0.1
 
@@ -40,6 +41,21 @@ while True:
     exit(wii)
 
   # The following code detects whether any of the Wiimotes buttons have been pressed and then prints a statement to the screen!
+  
+    def getacc()
+    wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_ACC
+    check = 0
+    while check == 0:
+      ac = (wii.state['acc'])
+      time.sleep(0.01)
+      check = (buttons & cwiid.BTN_HOME)
+    time.sleep(button_delay)
+    
+    def rumble()
+    wii.rumble = 1
+    time.sleep(1)
+    wii.rumble = 0
+    
   if (buttons & cwiid.BTN_LEFT):
     print 'Left pressed'
     time.sleep(button_delay)
@@ -70,15 +86,6 @@ while True:
 
   if (buttons & cwiid.BTN_B):
     print 'Button B pressed'
-    time.sleep(button_delay)
-
-  if (buttons & cwiid.BTN_HOME):
-    wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_ACC
-    check = 0
-    while check == 0:
-      print(wii.state['acc'])
-      time.sleep(0.01)
-      check = (buttons & cwiid.BTN_HOME)
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_MINUS):
